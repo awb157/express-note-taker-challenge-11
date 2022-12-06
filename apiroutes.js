@@ -7,7 +7,16 @@ res.json(data)
 })
 
 
-router.get("/notes",(req,res)=>{
-    
+router.post("/notes",(req,res)=>{
+// create request with model
+let notemodel={
+    title:req.body.title,
+    text:req.body.text,
+    id: Math.random()
+}
+data.push(notemodel)
+fs.writeFileSync("./db/db.json",JSON.stringify(data))
+//after request changes send response back to frount end
+res.json(data)
 })
 module.exports=router
